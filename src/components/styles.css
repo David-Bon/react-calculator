@@ -1,12 +1,11 @@
 body {
     margin: 0;
 }
-
 .wrapper {
     display: grid;
-
+    padding: 0 5px 0 5px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
     gap: 7px 7px;
     background: #1C1C1C;
     grid-template-areas:
@@ -17,5 +16,5 @@ body {
     "four five six minus"
     "one two three plus"
     "zero zero dot equal";
-height: 100vh;
+    height: 100vh;
 }
