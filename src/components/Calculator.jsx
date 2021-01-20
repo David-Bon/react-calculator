@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import Display from "./Display";
 import './styles.css'
-import ButtonFill from "./Button sample/ButtonFill";
+import ButtonFill from "./ButtonFill";
 import {NumberContext} from "./Provider/NumberProvider";
 
 const Calculator = () => {
