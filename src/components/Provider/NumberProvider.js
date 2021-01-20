@@ -7,7 +7,6 @@ const NumberProvider = (props) => {
     const [storedNumber, setStoredNumber] = useState('')
     const [functionType, setFunctionType] = useState('')
     const [memoryStore, setMemoryStore] = useState('0')
-
     const handleSetDisplayValue = (num) => {
         if (!number.includes('.') || num !== '.') {
             setNumber(`${(number + num).replace(/^0+/, '')}`);
@@ -44,14 +43,15 @@ const NumberProvider = (props) => {
     const handleSetMemoryStore = (type) => {
         switch (type) {
             case "mc":
-                setMemoryStore('');
+                setMemoryStore('0');
                 break;
             case "mr":
-               setNumber(`${memoryStore}`);
+                !memoryStore ? setMemoryStore('0') : setNumber(`${memoryStore}`);
                 break;
             case "m+":
+
                 setMemoryStore(
-                    `${Math.round(`${(parseFloat(number) + parseFloat(memoryStore)) * 100}`) / 100}`
+                    `${Math.round(`${(parseFloat(!number ? storedNumber : number) + parseFloat(memoryStore)) * 100}`) / 100}`
                 )
                 console.log(memoryStore)
                 break;
@@ -60,9 +60,11 @@ const NumberProvider = (props) => {
                     `${Math.round(`${(parseFloat(memoryStore) - parseFloat(number)) * 1000}`) / 1000}`
                 )
                 break;
-
+            default:
+                break;
         }
-        }
+        console.log(memoryStore)
+    }
 
     const handleSetPercent = () => {
         const parseNumber = parseFloat(number)
@@ -121,6 +123,32 @@ const NumberProvider = (props) => {
     };
 
 
+    const propertyArray = [
+        {classNumber: "ac", color: "#D4D4D2", btnValue: "ac", handleAction: handleClearValue},
+        {classNumber: "toggleNegative", color: "#D4D4D2", btnValue: "+/-", handleAction: handleToggleNegative},
+        {classNumber: "percent", color: "#D4D4D2", btnValue: "%", handleAction: handleSetPercent},
+        {classNumber: "split", color: "#FF9500", btnValue: "/", handleAction: handleSetCalcFunction},
+        {classNumber: "mc", color: "#505050", btnValue: "mc", handleAction: handleSetMemoryStore},
+        {classNumber: "mr", color: "#505050", btnValue: "mr", handleAction: handleSetMemoryStore},
+        {classNumber: "mMinus", color: "#505050", btnValue: "m-", handleAction: handleSetMemoryStore},
+        {classNumber: "mPlus", color: "#FF9500", btnValue: "m+", handleAction: handleSetMemoryStore},
+        {classNumber: "seven", color: "#505050", btnValue: "7", handleAction: handleSetDisplayValue},
+        {classNumber: "eight", color: "#505050", btnValue: "8", handleAction: handleSetDisplayValue},
+        {classNumber: "nine", color: "#505050", btnValue: "9", handleAction: handleSetDisplayValue},
+        {classNumber: "multiply", color: "#FF9500", btnValue: "*", handleAction: handleSetCalcFunction},
+        {classNumber: "four", color: "#505050", btnValue: "4", handleAction: handleSetDisplayValue},
+        {classNumber: "five", color: "#505050", btnValue: "5", handleAction: handleSetDisplayValue},
+        {classNumber: "six", color: "#505050", btnValue: "6", handleAction: handleSetDisplayValue},
+        {classNumber: "minus", color: "#FF9500", btnValue: "-", handleAction: handleSetCalcFunction},
+        {classNumber: "one", color: "#505050", btnValue: "1", handleAction: handleSetDisplayValue},
+        {classNumber: "two", color: "#505050", btnValue: "2", handleAction: handleSetDisplayValue},
+        {classNumber: "three", color: "#505050", btnValue: "3", handleAction: handleSetDisplayValue},
+        {classNumber: "plus", color: "#FF9500", btnValue: "+", handleAction: handleSetCalcFunction},
+        {classNumber: "zero", color: "#505050", btnValue: "0", handleAction: handleSetDisplayValue},
+        {classNumber: "dot", color: "#505050", btnValue: ".", handleAction: handleSetDisplayValue},
+        {classNumber: "equal", color: "#FF9500", btnValue: "=", handleAction: doMath},
+    ]
+
     return (
         <NumberContext.Provider
             value={{
@@ -131,6 +159,7 @@ const NumberProvider = (props) => {
                 handleSetPercent,
                 handleToggleNegative,
                 handleSetMemoryStore,
+                propertyArray,
                 number,
                 memoryStore,
                 functionType,
