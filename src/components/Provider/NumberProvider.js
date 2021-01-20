@@ -53,7 +53,6 @@ const NumberProvider = (props) => {
                 setMemoryStore(
                     `${Math.round(`${(parseFloat(!number ? storedNumber : number) + parseFloat(memoryStore)) * 100}`) / 100}`
                 )
-                console.log(memoryStore)
                 break;
             case "m-":
                 setMemoryStore(
@@ -63,7 +62,6 @@ const NumberProvider = (props) => {
             default:
                 break;
         }
-        console.log(memoryStore)
     }
 
     const handleSetPercent = () => {
