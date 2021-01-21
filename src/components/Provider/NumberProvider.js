@@ -14,9 +14,13 @@ const NumberProvider = (props) => {
     };
 
     const handleClearValue = () => {
-        setNumber('')
-        setStoredNumber('')
-        setFunctionType('')
+        if(number){
+            setNumber('')
+        }
+else if (!number) {
+            setStoredNumber('')
+            setFunctionType('')
+        }
     }
 
     const handleSetStoredValue = () => {
